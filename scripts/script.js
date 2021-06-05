@@ -1,11 +1,22 @@
 function playGame(){
-    let choices = ["Rock", "Paper", "Scissor"]
+    let choices = ["Rock", "Paper", "Scissor"],
         userScore = 0,
         computerScore = 0,
-        gamesPlayed = 0;
+        gamesPlayed = 0,
+        matchWinner;
 
     while (gamesPlayed< 5){
-        playMatch(choices, userScore, computerScore);  // will add + 1 to winner
+        let matchWinner = playMatch(choices);  // will add + 1 to winner
+
+        switch (matchWinner){
+            case 'user':
+                userScore++;
+                break;
+            case 'computer':
+                computerScore++;
+                break;
+        }
+
         gamesPlayed++;
     }
 
@@ -40,8 +51,8 @@ function userChoice(choices){
     }
 }
 
-function evaluateChoice(userChoice, computerChoice,
-    userScore, computerScore){
+function evaluateChoice(userChoice, computerChoice)
+    {
     let r = "Rock",
         p = "Paper",
         s = "Scissor",
@@ -56,18 +67,24 @@ function evaluateChoice(userChoice, computerChoice,
             case3 = (uC == s) & (cC == p);
 
         if (case1 || case2 || case3){
-            userScore++;
+            return 'user'
         }else{
-            computerScore++;
-        };
+            return 'computer'
+        }
     
 }
 
-function playMatch(choices, userScore, computerScore) {
+function playMatch(choices){
     let uC = userChoice(choices),       // abbreviate computer choice and user choice
-        cC = computerChoice(choices);
-    
-    (uC == cC) ? playMatch(choices, userScore, computerScore) : evaluateChoice(uC, cC, userScore, computerScore);
+        cC = computerChoice(choices),
+        matchWinner;
+
+    if(uC == cC){
+        playMatch(choices)  //replay match
+    }
+
+    matchWinner = evaluateChoice(uC, cC); 
+    return matchWinner;
 }
 
-playGame()
+playGame();

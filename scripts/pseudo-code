@@ -1,0 +1,94 @@
+the program will do the ff:
+	play a game, with 5 matches, until the last keep the score
+	then evaluate who wins
+
+	player chooses
+	computer chooses
+
+
+problems for support funcs:
+	how do we get the computer to randomly choose -- ok
+	how do we make the user choose 
+	how do we evaluate which of the choices is greater than the other
+
+
+problems for main func; the play game:
+
+
+
+
+
+
+play game implementation:
+
+	start at game 1; init scores to 1
+	while the number of games is <= 5:
+	play a match; evaluate  the current score of the player
+	at termination of playgame, declare the winner
+
+
+match implementation:
+	inputs player choice, computer choice
+	if equal, redo match -- else add 1 point to winner
+
+
+computer choice implementation:
+	given choices [Rock, Paper, Scissor]
+	get a random index
+	then return the choice as specified by random index
+
+	getRandomInt is used a defn for choosing random index
+
+
+make user choose:
+	ask for a number - show counterparts at prompt
+	convert that to int, then index
+
+for this we can then store the choices to a top level array then do the indexing later
+
+
+
+
+final pseudo code
+
+define playgame
+	matches played = 0
+	while match played is <= 5
+		play a match
+	then return the winner + scores
+
+
+define match
+	inputs user choice, computer choice
+
+	do conditional, left | right
+
+
+
+	compare, + 1 to winner
+
+
+define user choice
+	prompt choose choice
+	convert to integer
+	get the choice as per index
+	return the value
+
+define computer choice
+	choose a random int
+	get the choice
+	return the value
+
+define evaluate               -- pano natin iiplement to -- OKS
+	do conditionals
+		paper beats rock
+		rock beats scissor
+		scissor beats paper
+
+		paper -> rock win
+		rock -> scissor win
+		scissor -> paper win
+
+		player only wins if (paper & rock || rock & scissor || scissor & paper) # only if this is true
+		else computer wins
+	
